@@ -4,80 +4,137 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Basereply — All your customer chats, in one simple inbox</title>
-    <meta name="description" content="Start with WhatsApp. Grow into every channel. Basereply helps teams manage customer conversations from one clean dashboard.">
+    <meta name="description" content="Start with WhatsApp. Grow into every channel. The modern messaging platform built for teams.">
+    
+    <!-- Favicons -->
+    <link rel="icon" type="image/x-icon" href="/favicon.ico">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="192x192" href="/android-chrome-192x192.png">
+    <link rel="icon" type="image/png" sizes="512x512" href="/android-chrome-512x512.png">
+    <link rel="manifest" href="/site.webmanifest">
+    
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
     <style>
+        :root {
+            --primary: #7C3AED;
+            --primary-dark: #6D28D9;
+            --primary-light: #A78BFA;
+            --accent: #EC4899;
+        }
+
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
         }
 
+        html {
+            scroll-behavior: smooth;
+        }
+
         body {
-            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            font-family: 'Outfit', -apple-system, BlinkMacSystemFont, sans-serif;
             line-height: 1.6;
-            color: #1F2937;
+            color: #111827;
             background: #FFFFFF;
             -webkit-font-smoothing: antialiased;
-            -moz-osx-font-smoothing: grayscale;
         }
 
         .container {
-            max-width: 1200px;
+            max-width: 1280px;
             margin: 0 auto;
-            padding: 0 32px;
+            padding: 0 40px;
         }
 
-        /* Navigation */
         nav {
-            background: rgba(255, 255, 255, 0.98);
-            backdrop-filter: blur(12px);
-            padding: 20px 0;
             position: sticky;
             top: 0;
-            z-index: 100;
-            border-bottom: 1px solid #F3F4F6;
-            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.02);
+            z-index: 1000;
+            background: rgba(255, 255, 255, 0.8);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid rgba(0, 0, 0, 0.05);
         }
 
-        .nav-content {
+        .nav-inner {
+            height: 72px;
             display: flex;
-            justify-content: space-between;
             align-items: center;
+            justify-content: space-between;
         }
 
         .logo {
-            font-size: 26px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            text-decoration: none;
+        }
+
+        .logo-icon {
+            width: 42px;
+            height: 42px;
+            background: linear-gradient(135deg, #7C3AED 0%, #EC4899 100%);
+            border-radius: 11px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            box-shadow: 0 4px 14px rgba(124, 58, 237, 0.4);
+        }
+
+        .logo-icon::before {
+            content: '';
+            position: absolute;
+            width: 18px;
+            height: 18px;
+            background: white;
+            border-radius: 50%;
+            top: 8px;
+            left: 8px;
+        }
+
+        .logo-icon::after {
+            content: '';
+            position: absolute;
+            width: 12px;
+            height: 12px;
+            background: white;
+            border-radius: 50%;
+            bottom: 8px;
+            right: 8px;
+        }
+
+        .logo-text {
+            font-size: 24px;
             font-weight: 800;
-            background: linear-gradient(135deg, #7C3AED 0%, #A78BFA 100%);
+            background: linear-gradient(135deg, #7C3AED 0%, #EC4899 100%);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
-            background-clip: text;
+            letter-spacing: -0.02em;
         }
 
         .nav-cta {
             padding: 12px 28px;
-            background: #7C3AED;
+            background: var(--primary);
             color: white;
-            border-radius: 10px;
+            border-radius: 12px;
             text-decoration: none;
-            font-weight: 600;
+            font-weight: 700;
             font-size: 15px;
-            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            transition: all 0.3s;
+            box-shadow: 0 4px 14px rgba(124, 58, 237, 0.39);
         }
 
         .nav-cta:hover {
-            background: #6D28D9;
-            transform: translateY(-1px);
-            box-shadow: 0 6px 20px rgba(124, 58, 237, 0.4);
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(124, 58, 237, 0.5);
         }
 
-        /* Hero Section */
         .hero {
-            padding: 100px 0 140px;
-            background: linear-gradient(180deg, #FAFAFF 0%, #FFFFFF 50%);
+            padding: 120px 0 160px;
             position: relative;
             overflow: hidden;
         }
@@ -85,476 +142,197 @@
         .hero::before {
             content: '';
             position: absolute;
-            top: 0;
-            right: -20%;
-            width: 60%;
-            height: 100%;
-            background: radial-gradient(ellipse at center, rgba(167, 139, 250, 0.08) 0%, transparent 70%);
+            top: -50%;
+            right: -30%;
+            width: 100%;
+            height: 150%;
+            background: radial-gradient(ellipse at center, rgba(167, 139, 250, 0.15) 0%, transparent 70%);
+            pointer-events: none;
         }
 
         .hero-grid {
             display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 100px;
+            grid-template-columns: 1.1fr 1fr;
+            gap: 80px;
             align-items: center;
             position: relative;
             z-index: 1;
         }
 
         .hero-content h1 {
-            font-size: 62px;
-            font-weight: 800;
-            color: #111827;
-            line-height: 1.1;
+            font-size: 72px;
+            font-weight: 900;
+            line-height: 1.05;
+            letter-spacing: -0.04em;
             margin-bottom: 28px;
-            letter-spacing: -0.02em;
+            background: linear-gradient(135deg, #111827 0%, #4B5563 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
         }
 
         .hero-content p {
-            font-size: 21px;
+            font-size: 22px;
             color: #6B7280;
-            margin-bottom: 36px;
             line-height: 1.7;
+            margin-bottom: 40px;
+            max-width: 540px;
         }
 
-        .hero-cta-buttons {
+        .cta-group {
             display: flex;
             gap: 16px;
-            margin-bottom: 20px;
+            margin-bottom: 32px;
         }
 
         .btn {
-            padding: 16px 36px;
-            font-size: 16px;
-            font-weight: 600;
-            border-radius: 12px;
+            padding: 18px 40px;
+            font-size: 17px;
+            font-weight: 700;
+            border-radius: 14px;
             text-decoration: none;
-            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-            cursor: pointer;
-            display: inline-block;
+            transition: all 0.3s;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
             border: 2px solid transparent;
         }
 
         .btn-primary {
-            background: #7C3AED;
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
             color: white;
-            box-shadow: 0 4px 14px rgba(124, 58, 237, 0.3);
+            box-shadow: 0 10px 40px -10px rgba(124, 58, 237, 0.6);
         }
 
         .btn-primary:hover {
-            background: #6D28D9;
-            transform: translateY(-2px);
-            box-shadow: 0 8px 24px rgba(124, 58, 237, 0.4);
+            transform: translateY(-3px);
+            box-shadow: 0 20px 50px -10px rgba(124, 58, 237, 0.7);
         }
 
         .btn-secondary {
             background: white;
-            color: #7C3AED;
-            border: 2px solid #E9D5FF;
+            color: var(--primary);
+            border-color: #E5E7EB;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
         }
 
         .btn-secondary:hover {
-            background: #FAF5FF;
-            border-color: #C4B5FD;
+            border-color: var(--primary);
         }
 
-        .hero-microcopy {
+        .hero-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            padding: 6px 16px 6px 6px;
+            background: rgba(124, 58, 237, 0.08);
+            border-radius: 100px;
             font-size: 14px;
-            color: #9CA3AF;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-        }
-
-        .hero-microcopy::before {
-            content: '✓';
-            color: #10B981;
             font-weight: 700;
+            color: var(--primary);
         }
 
-        /* WhatsApp-Style Mockup */
-        .hero-visual {
-            position: relative;
-        }
-
-        .phone-mockup {
-            background: #1F2937;
-            border-radius: 40px;
-            padding: 12px;
-            box-shadow: 0 30px 80px rgba(0, 0, 0, 0.15);
-            position: relative;
-        }
-
-        .phone-screen {
-            background: #E5DDD5;
-            border-radius: 32px;
-            overflow: hidden;
-            position: relative;
-        }
-
-        .whatsapp-header {
-            background: #075E54;
-            padding: 16px 20px;
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            color: white;
-        }
-
-        .wa-avatar {
-            width: 40px;
-            height: 40px;
-            border-radius: 50%;
-            background: linear-gradient(135deg, #7C3AED, #A78BFA);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-weight: 700;
-            font-size: 16px;
-        }
-
-        .wa-header-info {
-            flex: 1;
-        }
-
-        .wa-name {
-            font-size: 16px;
-            font-weight: 600;
-            margin-bottom: 2px;
-        }
-
-        .wa-status {
-            font-size: 12px;
-            opacity: 0.8;
-        }
-
-        .whatsapp-messages {
-            padding: 20px 16px;
-            min-height: 400px;
-            display: flex;
-            flex-direction: column;
-            gap: 8px;
-        }
-
-        .wa-message {
-            max-width: 75%;
-            padding: 10px 14px;
-            border-radius: 8px;
-            font-size: 14px;
-            line-height: 1.5;
-            position: relative;
-            box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
-        }
-
-        .wa-message.received {
-            background: white;
-            align-self: flex-start;
-            border-radius: 0 8px 8px 8px;
-        }
-
-        .wa-message.sent {
-            background: #DCF8C6;
-            align-self: flex-end;
-            border-radius: 8px 0 8px 8px;
-        }
-
-        .wa-time {
-            font-size: 11px;
-            color: #667781;
-            margin-top: 4px;
-            display: block;
-        }
-
-        .wa-input {
-            background: #F0F2F5;
-            padding: 12px 16px;
-            display: flex;
-            align-items: center;
-            gap: 12px;
-        }
-
-        .wa-input-field {
-            flex: 1;
-            background: white;
-            border-radius: 20px;
-            padding: 10px 16px;
-            font-size: 14px;
-            border: none;
-            color: #667781;
-        }
-
-        /* Floating Badge */
-        .floating-badge {
-            position: absolute;
-            top: -20px;
-            right: -20px;
-            background: white;
-            padding: 16px 20px;
-            border-radius: 16px;
-            box-shadow: 0 10px 40px rgba(124, 58, 237, 0.2);
-            border: 2px solid #F3F4F6;
-        }
-
-        .badge-label {
-            font-size: 11px;
-            font-weight: 600;
-            color: #9CA3AF;
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-            margin-bottom: 4px;
-        }
-
-        .badge-value {
-            font-size: 24px;
-            font-weight: 800;
-            color: #7C3AED;
-        }
-
-        /* Section Styles */
-        section {
-            padding: 100px 0;
-        }
-
-        .section-light {
-            background: #FAFAFF;
-        }
-
-        .section-title {
-            font-size: 48px;
-            font-weight: 800;
-            text-align: center;
-            margin-bottom: 20px;
-            color: #111827;
-            letter-spacing: -0.02em;
-        }
-
-        .section-subtitle {
-            font-size: 20px;
-            text-align: center;
-            color: #6B7280;
-            margin-bottom: 72px;
-            max-width: 700px;
-            margin-left: auto;
-            margin-right: auto;
-            line-height: 1.7;
-        }
-
-        /* How It Works */
-        .steps-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 40px;
-            margin-bottom: 56px;
-        }
-
-        .step-card {
-            background: white;
-            padding: 44px 36px;
-            border-radius: 20px;
-            text-align: center;
-            border: 1px solid #F3F4F6;
-            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-        }
-
-        .step-card:hover {
-            transform: translateY(-8px);
-            box-shadow: 0 20px 48px rgba(124, 58, 237, 0.15);
-            border-color: #E9D5FF;
-        }
-
-        .step-number {
-            width: 48px;
-            height: 48px;
-            background: linear-gradient(135deg, #7C3AED 0%, #A78BFA 100%);
-            border-radius: 12px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin: 0 auto 24px;
-            font-size: 24px;
-            font-weight: 800;
-            color: white;
-        }
-
-        .step-icon {
-            font-size: 48px;
-            margin-bottom: 24px;
-        }
-
-        .step-card h3 {
-            font-size: 22px;
-            font-weight: 700;
-            margin-bottom: 14px;
-            color: #111827;
-        }
-
-        .step-card p {
-            color: #6B7280;
-            font-size: 16px;
-            line-height: 1.7;
-        }
-
-        .section-cta {
-            text-align: center;
-        }
-
-        /* Feature Sections with Real Mockups */
-        .feature-section {
-            margin-bottom: 120px;
-        }
-
-        .feature-content {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 100px;
-            align-items: center;
-        }
-
-        .feature-content.reverse {
-            direction: rtl;
-        }
-
-        .feature-content.reverse > * {
-            direction: ltr;
-        }
-
-        .feature-text h3 {
-            font-size: 40px;
-            font-weight: 800;
-            color: #111827;
-            margin-bottom: 24px;
-            line-height: 1.2;
-            letter-spacing: -0.02em;
-        }
-
-        .feature-text > p {
-            font-size: 19px;
-            color: #6B7280;
-            margin-bottom: 32px;
-            line-height: 1.7;
-        }
-
-        .feature-list {
-            display: flex;
-            flex-direction: column;
-            gap: 24px;
-        }
-
-        .feature-item {
-            display: flex;
-            align-items: flex-start;
-            gap: 16px;
-        }
-
-        .feature-check {
+        .badge-dot {
             width: 32px;
             height: 32px;
-            background: linear-gradient(135deg, #7C3AED 0%, #A78BFA 100%);
-            border-radius: 10px;
+            background: linear-gradient(135deg, var(--primary), var(--primary-light));
+            border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
-            color: white;
-            font-weight: 800;
-            font-size: 18px;
-            flex-shrink: 0;
         }
 
-        .feature-item-content h4 {
-            font-size: 17px;
-            font-weight: 600;
-            color: #111827;
-            margin-bottom: 6px;
-        }
-
-        .feature-item-content p {
-            font-size: 15px;
-            color: #6B7280;
-            line-height: 1.6;
-            margin: 0;
-        }
-
-        /* Dashboard Mockup */
-        .dashboard-mockup {
+        .browser-window {
             background: white;
-            border-radius: 20px;
-            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.08);
-            border: 1px solid #F3F4F6;
+            border-radius: 24px;
+            box-shadow: 0 50px 100px -20px rgba(50, 50, 93, 0.25);
             overflow: hidden;
         }
 
-        .dashboard-header {
+        .browser-header {
             background: #F9FAFB;
-            padding: 20px 24px;
+            padding: 16px 20px;
             border-bottom: 1px solid #E5E7EB;
             display: flex;
             align-items: center;
-            justify-content: space-between;
+            gap: 12px;
         }
 
-        .dashboard-title {
-            font-size: 18px;
-            font-weight: 700;
-            color: #111827;
-        }
-
-        .dashboard-tabs {
+        .browser-dots {
             display: flex;
             gap: 8px;
         }
 
-        .dashboard-tab {
+        .browser-dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+        }
+
+        .browser-dot:nth-child(1) { background: #FF5F57; }
+        .browser-dot:nth-child(2) { background: #FFBD2E; }
+        .browser-dot:nth-child(3) { background: #28CA42; }
+
+        .browser-url {
+            flex: 1;
+            background: white;
             padding: 8px 16px;
             border-radius: 8px;
-            font-size: 14px;
-            font-weight: 600;
+            font-size: 13px;
             color: #6B7280;
-            background: transparent;
-            transition: all 0.2s;
+            border: 1px solid #E5E7EB;
         }
 
-        .dashboard-tab.active {
-            background: white;
-            color: #7C3AED;
-            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+        .app-interface {
+            display: grid;
+            grid-template-columns: 280px 1fr;
+            height: 500px;
         }
 
-        .dashboard-body {
-            padding: 24px;
+        .sidebar {
+            background: #FAFAFF;
+            border-right: 1px solid #E5E7EB;
+            padding: 20px;
         }
 
-        .conversation-list {
-            display: flex;
-            flex-direction: column;
-            gap: 1px;
+        .sidebar-header {
+            font-size: 14px;
+            font-weight: 700;
+            margin-bottom: 16px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
         }
 
         .conversation-item {
             display: flex;
             align-items: center;
-            gap: 16px;
-            padding: 16px;
-            background: #F9FAFB;
+            gap: 12px;
+            padding: 12px;
             border-radius: 12px;
+            margin-bottom: 4px;
+            cursor: pointer;
             transition: all 0.2s;
         }
 
         .conversation-item:hover {
-            background: #F3F4F6;
+            background: white;
+        }
+
+        .conversation-item.active {
+            background: white;
+            box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
         }
 
         .conv-avatar {
-            width: 48px;
-            height: 48px;
-            border-radius: 12px;
-            background: linear-gradient(135deg, #7C3AED, #A78BFA);
+            width: 40px;
+            height: 40px;
+            border-radius: 10px;
+            background: linear-gradient(135deg, var(--primary), var(--accent));
             display: flex;
             align-items: center;
             justify-content: center;
             color: white;
             font-weight: 700;
-            font-size: 16px;
-            flex-shrink: 0;
+            font-size: 14px;
         }
 
         .conv-info {
@@ -562,432 +340,246 @@
             min-width: 0;
         }
 
-        .conv-header {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            margin-bottom: 4px;
-        }
-
         .conv-name {
-            font-size: 15px;
+            font-size: 14px;
             font-weight: 600;
-            color: #111827;
-        }
-
-        .conv-time {
-            font-size: 12px;
-            color: #9CA3AF;
+            margin-bottom: 2px;
         }
 
         .conv-preview {
-            font-size: 14px;
+            font-size: 12px;
             color: #6B7280;
             white-space: nowrap;
             overflow: hidden;
             text-overflow: ellipsis;
         }
 
-        .conv-badge {
-            padding: 4px 10px;
-            border-radius: 6px;
-            font-size: 11px;
-            font-weight: 600;
-            flex-shrink: 0;
-        }
-
-        .conv-badge.whatsapp {
-            background: #E7F5EC;
-            color: #25D366;
-        }
-
-        .conv-badge.web {
-            background: #DBEAFE;
-            color: #3B82F6;
-        }
-
-        .conv-badge.email {
-            background: #FEE2E2;
-            color: #EF4444;
-        }
-
-        /* Pricing Section */
-        .pricing-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 32px;
-            margin-top: 72px;
-        }
-
-        .pricing-card {
+        .chat-area {
+            padding: 24px;
             background: white;
-            border: 2px solid #F3F4F6;
-            border-radius: 24px;
-            padding: 44px 36px;
-            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-            position: relative;
+            display: flex;
+            flex-direction: column;
         }
 
-        .pricing-card:hover {
-            border-color: #E9D5FF;
-            transform: translateY(-8px);
-            box-shadow: 0 20px 48px rgba(124, 58, 237, 0.15);
+        .chat-header {
+            padding-bottom: 16px;
+            border-bottom: 1px solid #E5E7EB;
+            margin-bottom: 24px;
         }
 
-        .pricing-card.featured {
-            background: linear-gradient(135deg, #7C3AED 0%, #A78BFA 100%);
-            border-color: #7C3AED;
-            color: white;
-        }
-
-        .pricing-badge {
-            position: absolute;
-            top: -12px;
-            left: 50%;
-            transform: translateX(-50%);
-            background: #7C3AED;
-            color: white;
-            padding: 6px 16px;
-            border-radius: 20px;
-            font-size: 12px;
+        .chat-title {
+            font-size: 18px;
             font-weight: 700;
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
+            margin-bottom: 4px;
         }
 
-        .pricing-card.featured .pricing-badge {
-            background: white;
-            color: #7C3AED;
+        .chat-status {
+            font-size: 13px;
+            color: #10B981;
         }
 
-        .pricing-name {
-            font-size: 16px;
-            font-weight: 700;
-            color: #9CA3AF;
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-            margin-bottom: 16px;
-        }
-
-        .pricing-card.featured .pricing-name {
-            color: rgba(255, 255, 255, 0.9);
-        }
-
-        .pricing-price {
-            margin-bottom: 8px;
-        }
-
-        .pricing-amount {
-            font-size: 52px;
-            font-weight: 800;
-            color: #111827;
-            line-height: 1;
-        }
-
-        .pricing-card.featured .pricing-amount {
-            color: white;
-        }
-
-        .pricing-period {
-            font-size: 16px;
-            color: #6B7280;
-            font-weight: 500;
-        }
-
-        .pricing-card.featured .pricing-period {
-            color: rgba(255, 255, 255, 0.9);
-        }
-
-        .pricing-description {
-            font-size: 15px;
-            color: #6B7280;
-            margin-bottom: 32px;
-            line-height: 1.6;
-        }
-
-        .pricing-card.featured .pricing-description {
-            color: rgba(255, 255, 255, 0.9);
-        }
-
-        .pricing-features {
+        .messages {
+            flex: 1;
             display: flex;
             flex-direction: column;
             gap: 16px;
-            margin-bottom: 36px;
         }
 
-        .pricing-feature {
+        .message {
             display: flex;
-            align-items: flex-start;
             gap: 12px;
-            font-size: 15px;
-            color: #4B5563;
+            max-width: 80%;
         }
 
-        .pricing-card.featured .pricing-feature {
-            color: white;
+        .message.received {
+            align-self: flex-start;
         }
 
-        .pricing-feature::before {
-            content: '✓';
-            color: #10B981;
-            font-weight: 800;
-            font-size: 18px;
-            flex-shrink: 0;
+        .message.sent {
+            align-self: flex-end;
+            flex-direction: row-reverse;
         }
 
-        .pricing-card.featured .pricing-feature::before {
-            color: white;
-        }
-
-        .pricing-cta {
-            width: 100%;
-            padding: 16px;
-            background: #7C3AED;
-            color: white;
-            border: none;
-            border-radius: 12px;
-            font-size: 16px;
-            font-weight: 700;
-            cursor: pointer;
-            transition: all 0.3s;
-        }
-
-        .pricing-cta:hover {
-            background: #6D28D9;
-            transform: translateY(-2px);
-        }
-
-        .pricing-card.featured .pricing-cta {
-            background: white;
-            color: #7C3AED;
-        }
-
-        .pricing-card.featured .pricing-cta:hover {
-            background: #F9FAFB;
-        }
-
-        /* Channels */
-        .channels-grid {
-            display: grid;
-            grid-template-columns: repeat(6, 1fr);
-            gap: 24px;
-            margin-top: 72px;
-        }
-
-        .channel-item {
-            background: white;
-            padding: 36px 24px;
-            border-radius: 20px;
-            text-align: center;
-            border: 1px solid #F3F4F6;
-            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-        }
-
-        .channel-item:hover {
-            border-color: #E9D5FF;
-            transform: translateY(-6px);
-            box-shadow: 0 12px 32px rgba(124, 58, 237, 0.15);
-        }
-
-        .channel-icon {
-            font-size: 44px;
-            margin-bottom: 16px;
-        }
-
-        .channel-name {
-            font-size: 14px;
-            font-weight: 600;
-            color: #4B5563;
-        }
-
-        /* Value Props */
-        .value-grid {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 32px;
-            margin-top: 72px;
-        }
-
-        .value-card {
-            background: white;
-            padding: 44px 40px;
-            border-radius: 20px;
-            border: 1px solid #F3F4F6;
-            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-        }
-
-        .value-card:hover {
-            border-color: #E9D5FF;
-            box-shadow: 0 16px 40px rgba(124, 58, 237, 0.12);
-            transform: translateY(-4px);
-        }
-
-        .value-card h3 {
-            font-size: 24px;
-            font-weight: 700;
-            margin-bottom: 16px;
-            color: #111827;
-        }
-
-        .value-card p {
-            color: #6B7280;
-            line-height: 1.8;
-            font-size: 16px;
-        }
-
-        /* Testimonials */
-        .testimonial-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 32px;
-            margin-top: 72px;
-        }
-
-        .testimonial-card {
-            background: white;
-            padding: 36px;
-            border-radius: 20px;
-            border: 1px solid #F3F4F6;
-            transition: all 0.3s;
-        }
-
-        .testimonial-card:hover {
-            border-color: #E9D5FF;
-            box-shadow: 0 12px 32px rgba(124, 58, 237, 0.1);
-        }
-
-        .testimonial-quote {
-            font-size: 16px;
-            color: #4B5563;
-            line-height: 1.7;
-            margin-bottom: 28px;
-        }
-
-        .testimonial-author {
-            display: flex;
-            align-items: center;
-            gap: 14px;
-        }
-
-        .testimonial-avatar {
-            width: 52px;
-            height: 52px;
-            background: linear-gradient(135deg, #7C3AED 0%, #A78BFA 100%);
-            border-radius: 50%;
+        .message-avatar {
+            width: 32px;
+            height: 32px;
+            border-radius: 8px;
+            background: linear-gradient(135deg, #6B7280, #9CA3AF);
             display: flex;
             align-items: center;
             justify-content: center;
             color: white;
             font-weight: 700;
-            font-size: 16px;
+            font-size: 12px;
         }
 
-        .testimonial-info h4 {
-            font-size: 15px;
-            font-weight: 700;
-            color: #111827;
-            margin-bottom: 2px;
+        .message.sent .message-avatar {
+            background: linear-gradient(135deg, var(--primary), var(--accent));
         }
 
-        .testimonial-info p {
-            font-size: 13px;
-            color: #9CA3AF;
+        .message-bubble {
+            padding: 12px 16px;
+            border-radius: 16px;
+            font-size: 14px;
+            line-height: 1.5;
         }
 
-        /* Final CTA */
-        .final-cta {
-            background: linear-gradient(135deg, #7C3AED 0%, #A78BFA 100%);
+        .message.received .message-bubble {
+            background: #F3F4F6;
+            border-bottom-left-radius: 4px;
+        }
+
+        .message.sent .message-bubble {
+            background: linear-gradient(135deg, var(--primary), var(--primary-dark));
             color: white;
+            border-bottom-right-radius: 4px;
+        }
+
+        .floating-stats {
+            position: absolute;
+            bottom: -40px;
+            left: -40px;
+            background: white;
+            padding: 24px 32px;
+            border-radius: 20px;
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+            border: 1px solid #E5E7EB;
+        }
+
+        .stat-label {
+            font-size: 12px;
+            font-weight: 700;
+            color: #6B7280;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-bottom: 4px;
+        }
+
+        .stat-value {
+            font-size: 36px;
+            font-weight: 900;
+            background: linear-gradient(135deg, var(--primary), var(--accent));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .stats-bar {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+            padding: 60px 0;
+            margin-top: -80px;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 60px;
             text-align: center;
-            padding: 100px 0;
+            color: white;
+        }
+
+        .stat-number {
+            font-size: 56px;
+            font-weight: 900;
+            line-height: 1;
+            margin-bottom: 8px;
+        }
+
+        .stat-text {
+            font-size: 16px;
+            opacity: 0.9;
+        }
+
+        section {
+            padding: 120px 0;
+        }
+
+        .section-header {
+            text-align: center;
+            max-width: 800px;
+            margin: 0 auto 80px;
+        }
+
+        .section-label {
+            display: inline-block;
+            padding: 6px 16px;
+            background: rgba(124, 58, 237, 0.08);
+            border-radius: 100px;
+            font-size: 14px;
+            font-weight: 700;
+            color: var(--primary);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-bottom: 20px;
+        }
+
+        .section-title {
+            font-size: 56px;
+            font-weight: 900;
+            line-height: 1.1;
+            letter-spacing: -0.03em;
+            margin-bottom: 24px;
+        }
+
+        .section-subtitle {
+            font-size: 20px;
+            color: #6B7280;
+            line-height: 1.7;
+        }
+
+        .cta-section {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+            padding: 120px 0;
+            text-align: center;
             position: relative;
             overflow: hidden;
         }
 
-        .final-cta::before {
-            content: '';
-            position: absolute;
-            top: -50%;
-            left: -50%;
-            width: 200%;
-            height: 200%;
-            background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, transparent 60%);
-            animation: pulse 8s ease-in-out infinite;
-        }
-
-        @keyframes pulse {
-            0%, 100% { transform: scale(1); opacity: 0.5; }
-            50% { transform: scale(1.1); opacity: 0.3; }
-        }
-
-        .final-cta-content {
+        .cta-content {
             position: relative;
             z-index: 1;
-        }
-
-        .final-cta h2 {
-            font-size: 52px;
-            font-weight: 800;
-            margin-bottom: 20px;
-            letter-spacing: -0.02em;
-        }
-
-        .final-cta p {
-            font-size: 21px;
-            margin-bottom: 44px;
-            opacity: 0.95;
-        }
-
-        .final-cta .btn-primary {
-            background: white;
-            color: #7C3AED;
-            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
-        }
-
-        .final-cta .btn-primary:hover {
-            background: #F9FAFB;
-            transform: translateY(-3px);
-            box-shadow: 0 12px 32px rgba(0, 0, 0, 0.2);
-        }
-
-        .final-cta .btn-secondary {
-            border-color: white;
+            max-width: 800px;
+            margin: 0 auto;
             color: white;
-            background: transparent;
         }
 
-        .final-cta .btn-secondary:hover {
-            background: rgba(255, 255, 255, 0.15);
+        .cta-content h2 {
+            font-size: 64px;
+            font-weight: 900;
+            line-height: 1.1;
+            letter-spacing: -0.03em;
+            margin-bottom: 24px;
         }
 
-        .final-microcopy {
-            margin-top: 20px;
-            font-size: 15px;
-            opacity: 0.9;
+        .cta-content p {
+            font-size: 22px;
+            opacity: 0.95;
+            margin-bottom: 48px;
         }
 
-        /* Footer */
         footer {
-            background: #F9FAFB;
-            padding: 72px 0 44px;
+            background: #0F172A;
+            color: white;
+            padding: 80px 0 40px;
         }
 
-        .footer-content {
+        .footer-grid {
             display: grid;
             grid-template-columns: 2fr 1fr 1fr 1fr 1fr;
-            gap: 64px;
-            margin-bottom: 52px;
+            gap: 60px;
+            margin-bottom: 60px;
         }
 
-        .footer-brand .logo {
-            font-size: 28px;
-            margin-bottom: 20px;
+        .footer-brand h3 {
+            font-size: 32px;
+            font-weight: 900;
+            background: linear-gradient(135deg, var(--primary-light), var(--accent));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 16px;
         }
 
         .footer-description {
-            color: #6B7280;
-            font-size: 15px;
+            opacity: 0.7;
             line-height: 1.7;
             margin-bottom: 24px;
         }
@@ -995,590 +587,361 @@
         .meta-badge {
             display: inline-flex;
             align-items: center;
-            gap: 10px;
+            gap: 12px;
             padding: 12px 20px;
-            background: white;
-            border: 1px solid #E5E7EB;
+            background: rgba(255, 255, 255, 0.1);
             border-radius: 12px;
             font-size: 14px;
-            color: #4B5563;
             font-weight: 600;
-            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
-        }
-
-        .meta-icon {
-            width: 24px;
-            height: 24px;
-            background: #1877F2;
-            color: white;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 14px;
-            font-weight: 800;
         }
 
         .footer-column h4 {
-            font-size: 15px;
+            font-size: 14px;
             font-weight: 700;
-            color: #111827;
+            text-transform: uppercase;
+            letter-spacing: 1px;
             margin-bottom: 20px;
         }
 
         .footer-column a {
             display: block;
-            color: #6B7280;
+            color: rgba(255, 255, 255, 0.7);
             text-decoration: none;
-            font-size: 14px;
             margin-bottom: 14px;
-            transition: color 0.2s;
+            transition: all 0.2s;
         }
 
         .footer-column a:hover {
-            color: #7C3AED;
+            color: white;
         }
 
         .footer-bottom {
             text-align: center;
-            padding-top: 36px;
-            border-top: 1px solid #E5E7EB;
-            color: #9CA3AF;
-            font-size: 14px;
-        }
-
-        /* Responsive */
-        @media (max-width: 1024px) {
-            .hero-grid,
-            .feature-content {
-                grid-template-columns: 1fr;
-                gap: 60px;
-            }
-
-            .feature-content.reverse {
-                direction: ltr;
-            }
-
-            .channels-grid {
-                grid-template-columns: repeat(3, 1fr);
-            }
-
-            .pricing-grid,
-            .testimonial-grid {
-                grid-template-columns: 1fr;
-            }
-
-            .footer-content {
-                grid-template-columns: 1fr 1fr;
-                gap: 40px;
-            }
+            padding-top: 40px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            opacity: 0.7;
         }
 
         @media (max-width: 768px) {
-            .container {
-                padding: 0 24px;
-            }
-
-            .hero-content h1 {
-                font-size: 44px;
-            }
-
-            .section-title {
-                font-size: 36px;
-            }
-
-            .steps-grid,
-            .value-grid,
-            .channels-grid {
-                grid-template-columns: 1fr;
-            }
-
-            .hero-cta-buttons {
-                flex-direction: column;
-            }
-
-            section {
-                padding: 60px 0;
-            }
-
-            .footer-content {
-                grid-template-columns: 1fr;
-            }
+            .hero-content h1 { font-size: 44px; }
+            .hero-grid, .app-interface { grid-template-columns: 1fr; }
+            section { padding: 80px 0; }
         }
     </style>
 </head>
 <body>
-    <!-- Navigation -->
     <nav>
         <div class="container">
-            <div class="nav-content">
-                <div class="logo">Basereply</div>
+            <div class="nav-inner">
+                <a href="#" class="logo">
+                    <div class="logo-icon"></div>
+                    <span class="logo-text">Basereply</span>
+                </a>
                 <a href="https://calendly.com/mariano-martene" target="_blank" class="nav-cta">Book a demo</a>
             </div>
         </div>
     </nav>
 
-    <!-- Hero Section -->
     <section class="hero">
         <div class="container">
             <div class="hero-grid">
                 <div class="hero-content">
-                    <h1>All your customer chats, in one simple inbox.</h1>
-                    <p>Basereply lets your team manage WhatsApp, web chat, and other channels from one clean dashboard.</p>
-                    <div class="hero-cta-buttons">
-                        <a href="#cta" class="btn btn-primary">Try it free</a>
+                    <h1>All your customer chats, unified in one powerful inbox.</h1>
+                    <p>The modern messaging platform that helps teams manage WhatsApp, web chat, and every channel from a single dashboard.</p>
+                    <div class="cta-group">
+                        <a href="#cta" class="btn btn-primary">Start free trial →</a>
                         <a href="https://calendly.com/mariano-martene" target="_blank" class="btn btn-secondary">Book a demo</a>
                     </div>
-                    <p class="hero-microcopy">No setup headaches. Get your inbox running in minutes.</p>
-                </div>
-                <div class="hero-visual">
-                    <div class="floating-badge">
-                        <div class="badge-label">Response Time</div>
-                        <div class="badge-value">&lt;2min</div>
+                    <div class="hero-badge">
+                        <div class="badge-dot">✓</div>
+                        <span>Setup in under 5 minutes</span>
                     </div>
-                    <div class="phone-mockup">
-                        <div class="phone-screen">
-                            <div class="whatsapp-header">
-                                <div class="wa-avatar">BC</div>
-                                <div class="wa-header-info">
-                                    <div class="wa-name">Basereply Support</div>
-                                    <div class="wa-status">Online</div>
+                </div>
+                <div style="position: relative; perspective: 1000px;">
+                    <div class="browser-window">
+                        <div class="browser-header">
+                            <div class="browser-dots">
+                                <div class="browser-dot"></div>
+                                <div class="browser-dot"></div>
+                                <div class="browser-dot"></div>
+                            </div>
+                            <div class="browser-url">app.basereply.com/inbox</div>
+                        </div>
+                        <div class="app-interface">
+                            <div class="sidebar">
+                                <div class="sidebar-header">Conversations</div>
+                                <div class="conversation-item active">
+                                    <div class="conv-avatar">SM</div>
+                                    <div class="conv-info">
+                                        <div class="conv-name">Sarah Miller</div>
+                                        <div class="conv-preview">Order status inquiry...</div>
+                                    </div>
+                                </div>
+                                <div class="conversation-item">
+                                    <div class="conv-avatar">JD</div>
+                                    <div class="conv-info">
+                                        <div class="conv-name">John Davis</div>
+                                        <div class="conv-preview">Need help with setup</div>
+                                    </div>
                                 </div>
                             </div>
-                            <div class="whatsapp-messages">
-                                <div class="wa-message received">
-                                    Hi! I need help with order #12345
-                                    <span class="wa-time">10:23 AM</span>
+                            <div class="chat-area">
+                                <div class="chat-header">
+                                    <div class="chat-title">Sarah Miller</div>
+                                    <div class="chat-status">● Active now</div>
                                 </div>
-                                <div class="wa-message sent">
-                                    Hey! I'd be happy to help you with that order. Let me check the status for you right now.
-                                    <span class="wa-time">10:23 AM</span>
+                                <div class="messages">
+                                    <div class="message received">
+                                        <div class="message-avatar">SM</div>
+                                        <div class="message-bubble">Hi! Can you help me track my order #12345?</div>
+                                    </div>
+                                    <div class="message sent">
+                                        <div class="message-avatar">You</div>
+                                        <div class="message-bubble">Of course! Let me check that for you.</div>
+                                    </div>
+                                    <div class="message received">
+                                        <div class="message-avatar">SM</div>
+                                        <div class="message-bubble">Thank you! 🙏</div>
+                                    </div>
                                 </div>
-                                <div class="wa-message received">
-                                    Thank you! 🙏
-                                    <span class="wa-time">10:24 AM</span>
-                                </div>
-                                <div class="wa-message sent">
-                                    Your order is on its way! Expected delivery: Tomorrow by 2 PM. You'll get a tracking link shortly.
-                                    <span class="wa-time">10:24 AM</span>
-                                </div>
-                            </div>
-                            <div class="wa-input">
-                                <input type="text" class="wa-input-field" placeholder="Type a message">
                             </div>
                         </div>
+                    </div>
+                    <div class="floating-stats">
+                        <div class="stat-label">Avg Response</div>
+                        <div class="stat-value">47s</div>
                     </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- How It Works -->
-    <section class="section-light">
+    <div class="stats-bar">
         <div class="container">
-            <h2 class="section-title">From signup to your first chat in minutes.</h2>
-            <div class="steps-grid">
-                <div class="step-card">
-                    <div class="step-number">1</div>
-                    <h3>Connect WhatsApp</h3>
-                    <p>Link your WhatsApp Business number in one click.</p>
+            <div class="stats-grid">
+                <div>
+                    <div class="stat-number">2.5M+</div>
+                    <div class="stat-text">Messages handled monthly</div>
                 </div>
-                <div class="step-card">
-                    <div class="step-number">2</div>
-                    <h3>Invite your team</h3>
-                    <p>Add teammates and assign conversations easily.</p>
+                <div>
+                    <div class="stat-number">98%</div>
+                    <div class="stat-text">Customer satisfaction</div>
                 </div>
-                <div class="step-card">
-                    <div class="step-number">3</div>
-                    <h3>Start replying</h3>
-                    <p>View and respond to all messages from one inbox.</p>
+                <div>
+                    <div class="stat-number">47s</div>
+                    <div class="stat-text">Average response time</div>
                 </div>
             </div>
-            <div class="section-cta">
+        </div>
+    </div>
+
+    <section style="background: #FAFAFF;">
+        <div class="container">
+            <div class="section-header">
+                <div class="section-label">How it works</div>
+                <h2 class="section-title">From signup to your first chat in minutes</h2>
+            </div>
+            <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 32px; margin-bottom: 56px;">
+                <div style="background: white; padding: 44px 36px; border-radius: 20px; text-align: center; border: 1px solid #E5E7EB; transition: all 0.4s;">
+                    <div style="width: 48px; height: 48px; background: linear-gradient(135deg, #7C3AED, #EC4899); border-radius: 12px; display: flex; align-items: center; justify-content: center; margin: 0 auto 24px; font-size: 24px; font-weight: 900; color: white;">1</div>
+                    <h3 style="font-size: 22px; font-weight: 700; margin-bottom: 14px;">Connect WhatsApp</h3>
+                    <p style="color: #6B7280; font-size: 16px; line-height: 1.7;">Link your WhatsApp Business number in one click.</p>
+                </div>
+                <div style="background: white; padding: 44px 36px; border-radius: 20px; text-align: center; border: 1px solid #E5E7EB;">
+                    <div style="width: 48px; height: 48px; background: linear-gradient(135deg, #7C3AED, #EC4899); border-radius: 12px; display: flex; align-items: center; justify-content: center; margin: 0 auto 24px; font-size: 24px; font-weight: 900; color: white;">2</div>
+                    <h3 style="font-size: 22px; font-weight: 700; margin-bottom: 14px;">Invite your team</h3>
+                    <p style="color: #6B7280; font-size: 16px; line-height: 1.7;">Add teammates and assign conversations easily.</p>
+                </div>
+                <div style="background: white; padding: 44px 36px; border-radius: 20px; text-align: center; border: 1px solid #E5E7EB;">
+                    <div style="width: 48px; height: 48px; background: linear-gradient(135deg, #7C3AED, #EC4899); border-radius: 12px; display: flex; align-items: center; justify-content: center; margin: 0 auto 24px; font-size: 24px; font-weight: 900; color: white;">3</div>
+                    <h3 style="font-size: 22px; font-weight: 700; margin-bottom: 14px;">Start replying</h3>
+                    <p style="color: #6B7280; font-size: 16px; line-height: 1.7;">View and respond to all messages from one inbox.</p>
+                </div>
+            </div>
+            <div style="text-align: center;">
                 <a href="#cta" class="btn btn-primary">Get started</a>
             </div>
         </div>
     </section>
 
-    <!-- Features with Real Mockups -->
     <section>
         <div class="container">
-            <h2 class="section-title">Everything you need to manage conversations.</h2>
-            
-            <!-- Feature 1: Shared Inbox -->
-            <div class="feature-section">
-                <div class="feature-content">
-                    <div class="feature-text">
-                        <h3>Shared Inbox for All Channels</h3>
-                        <p>Manage WhatsApp, web chat, email, and social media from one unified dashboard. No more switching between apps.</p>
-                        <div class="feature-list">
-                            <div class="feature-item">
-                                <div class="feature-check">✓</div>
-                                <div class="feature-item-content">
-                                    <h4>All channels in one place</h4>
-                                    <p>Handle every conversation without switching tabs</p>
-                                </div>
-                            </div>
-                            <div class="feature-item">
-                                <div class="feature-check">✓</div>
-                                <div class="feature-item-content">
-                                    <h4>Real-time sync</h4>
-                                    <p>Instant updates across all conversations</p>
-                                </div>
-                            </div>
-                            <div class="feature-item">
-                                <div class="feature-check">✓</div>
-                                <div class="feature-item-content">
-                                    <h4>Smart assignment</h4>
-                                    <p>Auto-route chats to the right team member</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="dashboard-mockup">
-                        <div class="dashboard-header">
-                            <div class="dashboard-title">📬 Inbox</div>
-                            <div class="dashboard-tabs">
-                                <div class="dashboard-tab active">All</div>
-                                <div class="dashboard-tab">Open</div>
-                                <div class="dashboard-tab">Resolved</div>
-                            </div>
-                        </div>
-                        <div class="dashboard-body">
-                            <div class="conversation-list">
-                                <div class="conversation-item">
-                                    <div class="conv-avatar">JM</div>
-                                    <div class="conv-info">
-                                        <div class="conv-header">
-                                            <span class="conv-name">John Martinez</span>
-                                            <span class="conv-time">2 min ago</span>
-                                        </div>
-                                        <div class="conv-preview">Where is my order? Need it urgently...</div>
-                                    </div>
-                                    <div class="conv-badge whatsapp">WhatsApp</div>
-                                </div>
-                                <div class="conversation-item">
-                                    <div class="conv-avatar">SK</div>
-                                    <div class="conv-info">
-                                        <div class="conv-header">
-                                            <span class="conv-name">Sarah Kim</span>
-                                            <span class="conv-time">5 min ago</span>
-                                        </div>
-                                        <div class="conv-preview">Help with setup please</div>
-                                    </div>
-                                    <div class="conv-badge web">Web Chat</div>
-                                </div>
-                                <div class="conversation-item">
-                                    <div class="conv-avatar">AL</div>
-                                    <div class="conv-info">
-                                        <div class="conv-header">
-                                            <span class="conv-name">Anna Lopez</span>
-                                            <span class="conv-time">12 min ago</span>
-                                        </div>
-                                        <div class="conv-preview">Pricing question for enterprise plan</div>
-                                    </div>
-                                    <div class="conv-badge email">Email</div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+            <div class="section-header">
+                <div class="section-label">Features</div>
+                <h2 class="section-title">Everything you need to delight customers</h2>
+                <p class="section-subtitle">Powerful tools designed for modern support teams. Handle every conversation with speed and precision.</p>
             </div>
-
-            <!-- Feature 2: Team Collaboration -->
-            <div class="feature-section">
-                <div class="feature-content reverse">
-                    <div class="feature-text">
-                        <h3>Team Collaboration Made Easy</h3>
-                        <p>Work together seamlessly with internal notes, automation rules, and collision detection. Never duplicate work again.</p>
-                        <div class="feature-list">
-                            <div class="feature-item">
-                                <div class="feature-check">✓</div>
-                                <div class="feature-item-content">
-                                    <h4>Internal notes & mentions</h4>
-                                    <p>Collaborate privately without customers seeing</p>
-                                </div>
-                            </div>
-                            <div class="feature-item">
-                                <div class="feature-check">✓</div>
-                                <div class="feature-item-content">
-                                    <h4>Automation rules</h4>
-                                    <p>Auto-assign, tag, and route conversations</p>
-                                </div>
-                            </div>
-                            <div class="feature-item">
-                                <div class="feature-check">✓</div>
-                                <div class="feature-item-content">
-                                    <h4>Collision detection</h4>
-                                    <p>Prevent duplicate replies from team members</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="dashboard-mockup">
-                        <div class="dashboard-header">
-                            <div class="dashboard-title">⚙️ Automation</div>
-                        </div>
-                        <div class="dashboard-body">
-                            <div class="conversation-list">
-                                <div class="conversation-item">
-                                    <div class="conv-avatar">⚡</div>
-                                    <div class="conv-info">
-                                        <div class="conv-header">
-                                            <span class="conv-name">Auto-assign to Support Team</span>
-                                        </div>
-                                        <div class="conv-preview">When message contains "help" → Assign Support</div>
-                                    </div>
-                                </div>
-                                <div class="conversation-item">
-                                    <div class="conv-avatar">🏷️</div>
-                                    <div class="conv-info">
-                                        <div class="conv-header">
-                                            <span class="conv-name">Tag Billing Inquiries</span>
-                                        </div>
-                                        <div class="conv-preview">When message contains "payment" → Tag: Billing</div>
-                                    </div>
-                                </div>
-                                <div class="conversation-item">
-                                    <div class="conv-avatar">📧</div>
-                                    <div class="conv-info">
-                                        <div class="conv-header">
-                                            <span class="conv-name">Send Welcome Message</span>
-                                        </div>
-                                        <div class="conv-preview">New conversation → Send welcome template</div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+            <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 32px;">
+                <div style="background: white; padding: 40px; border-radius: 24px; border: 1px solid #E5E7EB;">
+                    <div style="width: 56px; height: 56px; background: linear-gradient(135deg, rgba(124, 58, 237, 0.1), rgba(236, 72, 153, 0.1)); border-radius: 16px; display: flex; align-items: center; justify-content: center; font-size: 28px; margin-bottom: 24px;">📥</div>
+                    <h3 style="font-size: 22px; font-weight: 700; margin-bottom: 12px;">Unified Inbox</h3>
+                    <p style="color: #6B7280; line-height: 1.7;">Manage WhatsApp, web chat, email, and social media from one powerful dashboard.</p>
                 </div>
-            </div>
-
-            <!-- Feature 3: Analytics -->
-            <div class="feature-section">
-                <div class="feature-content">
-                    <div class="feature-text">
-                        <h3>Powerful Analytics & Insights</h3>
-                        <p>Track team performance, response times, and customer satisfaction. Make data-driven decisions to improve support.</p>
-                        <div class="feature-list">
-                            <div class="feature-item">
-                                <div class="feature-check">✓</div>
-                                <div class="feature-item-content">
-                                    <h4>Response time tracking</h4>
-                                    <p>Monitor how fast your team responds</p>
-                                </div>
-                            </div>
-                            <div class="feature-item">
-                                <div class="feature-check">✓</div>
-                                <div class="feature-item-content">
-                                    <h4>Team performance metrics</h4>
-                                    <p>See conversations handled per agent</p>
-                                </div>
-                            </div>
-                            <div class="feature-item">
-                                <div class="feature-check">✓</div>
-                                <div class="feature-item-content">
-                                    <h4>Customer satisfaction scores</h4>
-                                    <p>Track CSAT and improve service quality</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="dashboard-mockup">
-                        <div class="dashboard-header">
-                            <div class="dashboard-title">📊 Analytics</div>
-                        </div>
-                        <div class="dashboard-body">
-                            <div class="conversation-list">
-                                <div class="conversation-item">
-                                    <div class="conv-avatar">⚡</div>
-                                    <div class="conv-info">
-                                        <div class="conv-header">
-                                            <span class="conv-name">Avg Response Time</span>
-                                        </div>
-                                        <div class="conv-preview">1m 47s • ↓ 38% from last week</div>
-                                    </div>
-                                </div>
-                                <div class="conversation-item">
-                                    <div class="conv-avatar">💬</div>
-                                    <div class="conv-info">
-                                        <div class="conv-header">
-                                            <span class="conv-name">Conversations Today</span>
-                                        </div>
-                                        <div class="conv-preview">284 chats • 92% resolved</div>
-                                    </div>
-                                </div>
-                                <div class="conversation-item">
-                                    <div class="conv-avatar">⭐</div>
-                                    <div class="conv-info">
-                                        <div class="conv-header">
-                                            <span class="conv-name">Customer Satisfaction</span>
-                                        </div>
-                                        <div class="conv-preview">4.8/5.0 • 187 ratings this month</div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                <div style="background: white; padding: 40px; border-radius: 24px; border: 1px solid #E5E7EB;">
+                    <div style="width: 56px; height: 56px; background: linear-gradient(135deg, rgba(124, 58, 237, 0.1), rgba(236, 72, 153, 0.1)); border-radius: 16px; display: flex; align-items: center; justify-content: center; font-size: 28px; margin-bottom: 24px;">⚡</div>
+                    <h3 style="font-size: 22px; font-weight: 700; margin-bottom: 12px;">Smart Automation</h3>
+                    <p style="color: #6B7280; line-height: 1.7;">Auto-assign conversations, set up triggers, and route messages intelligently.</p>
+                </div>
+                <div style="background: white; padding: 40px; border-radius: 24px; border: 1px solid #E5E7EB;">
+                    <div style="width: 56px; height: 56px; background: linear-gradient(135deg, rgba(124, 58, 237, 0.1), rgba(236, 72, 153, 0.1)); border-radius: 16px; display: flex; align-items: center; justify-content: center; font-size: 28px; margin-bottom: 24px;">👥</div>
+                    <h3 style="font-size: 22px; font-weight: 700; margin-bottom: 12px;">Team Collaboration</h3>
+                    <p style="color: #6B7280; line-height: 1.7;">Internal notes, @mentions, and collision detection. Work together seamlessly.</p>
+                </div>
+                <div style="background: white; padding: 40px; border-radius: 24px; border: 1px solid #E5E7EB;">
+                    <div style="width: 56px; height: 56px; background: linear-gradient(135deg, rgba(124, 58, 237, 0.1), rgba(236, 72, 153, 0.1)); border-radius: 16px; display: flex; align-items: center; justify-content: center; font-size: 28px; margin-bottom: 24px;">💬</div>
+                    <h3 style="font-size: 22px; font-weight: 700; margin-bottom: 12px;">Quick Replies</h3>
+                    <p style="color: #6B7280; line-height: 1.7;">Save templates for common questions. Reply faster and maintain consistency.</p>
+                </div>
+                <div style="background: white; padding: 40px; border-radius: 24px; border: 1px solid #E5E7EB;">
+                    <div style="width: 56px; height: 56px; background: linear-gradient(135deg, rgba(124, 58, 237, 0.1), rgba(236, 72, 153, 0.1)); border-radius: 16px; display: flex; align-items: center; justify-content: center; font-size: 28px; margin-bottom: 24px;">📊</div>
+                    <h3 style="font-size: 22px; font-weight: 700; margin-bottom: 12px;">Real-time Analytics</h3>
+                    <p style="color: #6B7280; line-height: 1.7;">Track response times, satisfaction scores, and team performance.</p>
+                </div>
+                <div style="background: white; padding: 40px; border-radius: 24px; border: 1px solid #E5E7EB;">
+                    <div style="width: 56px; height: 56px; background: linear-gradient(135deg, rgba(124, 58, 237, 0.1), rgba(236, 72, 153, 0.1)); border-radius: 16px; display: flex; align-items: center; justify-content: center; font-size: 28px; margin-bottom: 24px;">🔌</div>
+                    <h3 style="font-size: 22px; font-weight: 700; margin-bottom: 12px;">Powerful Integrations</h3>
+                    <p style="color: #6B7280; line-height: 1.7;">Connect with your CRM, help desk, and favorite tools through our API.</p>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Pricing Section -->
-    <section class="section-light">
+    <section style="background: #FAFAFF;">
         <div class="container">
-            <h2 class="section-title">Simple, transparent pricing</h2>
-            <p class="section-subtitle">Choose the plan that fits your team. All plans include core features.</p>
-            <div class="pricing-grid">
-                <div class="pricing-card">
-                    <div class="pricing-name">Starter</div>
-                    <div class="pricing-price">
-                        <span class="pricing-amount">$19</span>
-                        <span class="pricing-period">/agent/month</span>
+            <div class="section-header">
+                <div class="section-label">Channels</div>
+                <h2 class="section-title">Connect your favorite channels</h2>
+                <p class="section-subtitle">Basereply works where your customers are.</p>
+            </div>
+            <div style="display: grid; grid-template-columns: repeat(6, 1fr); gap: 24px; margin-top: 60px;">
+                <div style="background: white; padding: 36px 24px; border-radius: 20px; text-align: center; border: 1px solid #E5E7EB;">
+                    <div style="width: 48px; height: 48px; margin: 0 auto 16px; background: #25D366; border-radius: 50%; position: relative;">
+                        <div style="position: absolute; width: 24px; height: 24px; background: white; border-radius: 50%; top: 12px; left: 12px;"></div>
                     </div>
-                    <p class="pricing-description">Perfect for small teams getting started with unified messaging.</p>
-                    <div class="pricing-features">
-                        <div class="pricing-feature">Unlimited conversations</div>
-                        <div class="pricing-feature">WhatsApp & Web Chat</div>
-                        <div class="pricing-feature">Basic automation rules</div>
-                        <div class="pricing-feature">Email support</div>
-                        <div class="pricing-feature">Standard analytics</div>
-                    </div>
-                    <button class="pricing-cta">Get Started</button>
+                    <div style="font-size: 14px; font-weight: 600; color: #4B5563;">WhatsApp</div>
                 </div>
-
-                <div class="pricing-card featured">
-                    <div class="pricing-badge">Most Popular</div>
-                    <div class="pricing-name">Professional</div>
-                    <div class="pricing-price">
-                        <span class="pricing-amount">$49</span>
-                        <span class="pricing-period">/agent/month</span>
-                    </div>
-                    <p class="pricing-description">For growing teams that need advanced features and priority support.</p>
-                    <div class="pricing-features">
-                        <div class="pricing-feature">Everything in Starter</div>
-                        <div class="pricing-feature">All channels (Email, Instagram, etc)</div>
-                        <div class="pricing-feature">Advanced automation</div>
-                        <div class="pricing-feature">Custom branding</div>
-                        <div class="pricing-feature">Priority support</div>
-                        <div class="pricing-feature">Advanced analytics & reports</div>
-                    </div>
-                    <button class="pricing-cta">Get Started</button>
+                <div style="background: white; padding: 36px 24px; border-radius: 20px; text-align: center; border: 1px solid #E5E7EB;">
+                    <div style="width: 48px; height: 48px; margin: 0 auto 16px; background: #3B82F6; border-radius: 12px; display: flex; align-items: center; justify-content: center; font-size: 28px; color: white; font-weight: 900;">💬</div>
+                    <div style="font-size: 14px; font-weight: 600; color: #4B5563;">Web Chat</div>
                 </div>
-
-                <div class="pricing-card">
-                    <div class="pricing-name">Enterprise</div>
-                    <div class="pricing-price">
-                        <span class="pricing-amount">$99</span>
-                        <span class="pricing-period">/agent/month</span>
+                <div style="background: white; padding: 36px 24px; border-radius: 20px; text-align: center; border: 1px solid #E5E7EB;">
+                    <div style="width: 48px; height: 48px; margin: 0 auto 16px; background: #EF4444; border-radius: 12px; display: flex; align-items: center; justify-content: center; font-size: 28px; color: white;">📧</div>
+                    <div style="font-size: 14px; font-weight: 600; color: #4B5563;">Email</div>
+                </div>
+                <div style="background: white; padding: 36px 24px; border-radius: 20px; text-align: center; border: 1px solid #E5E7EB;">
+                    <div style="width: 48px; height: 48px; margin: 0 auto 16px; background: linear-gradient(45deg, #f09433 0%,#e6683c 25%,#dc2743 50%,#cc2366 75%,#bc1888 100%); border-radius: 12px; position: relative;">
+                        <div style="position: absolute; width: 20px; height: 20px; border: 3px solid white; border-radius: 6px; top: 14px; left: 14px;"></div>
                     </div>
-                    <p class="pricing-description">For large teams with advanced security and customization needs.</p>
-                    <div class="pricing-features">
-                        <div class="pricing-feature">Everything in Professional</div>
-                        <div class="pricing-feature">Self-hosted option</div>
-                        <div class="pricing-feature">Custom integrations</div>
-                        <div class="pricing-feature">SLA guarantees</div>
-                        <div class="pricing-feature">Dedicated account manager</div>
-                        <div class="pricing-feature">SAML SSO & audit logs</div>
+                    <div style="font-size: 14px; font-weight: 600; color: #4B5563;">Instagram</div>
+                </div>
+                <div style="background: white; padding: 36px 24px; border-radius: 20px; text-align: center; border: 1px solid #E5E7EB;">
+                    <div style="width: 48px; height: 48px; margin: 0 auto 16px; background: #0088cc; border-radius: 50%;"></div>
+                    <div style="font-size: 14px; font-weight: 600; color: #4B5563;">Telegram</div>
+                </div>
+                <div style="background: white; padding: 36px 24px; border-radius: 20px; text-align: center; border: 1px solid #E5E7EB;">
+                    <div style="width: 48px; height: 48px; margin: 0 auto 16px; background: #1877F2; border-radius: 50%; position: relative;">
+                        <div style="position: absolute; color: white; font-size: 32px; font-weight: 900; font-family: Arial; top: 50%; left: 50%; transform: translate(-45%, -50%);">f</div>
                     </div>
-                    <button class="pricing-cta">Contact Sales</button>
+                    <div style="font-size: 14px; font-weight: 600; color: #4B5563;">Facebook</div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Value Propositions -->
     <section>
         <div class="container">
-            <h2 class="section-title">Built for speed. Made for growing teams.</h2>
-            <div class="value-grid">
-                <div class="value-card">
-                    <h3>⚡ Fast onboarding</h3>
-                    <p>Get your inbox live in minutes — no developers required. Simple setup, instant results.</p>
+            <div class="section-header">
+                <div class="section-label">Pricing</div>
+                <h2 class="section-title">Simple, transparent pricing</h2>
+                <p class="section-subtitle">Choose the plan that fits your team. All plans include our core features.</p>
+            </div>
+            <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 32px; margin-top: 60px;">
+                <div style="background: white; border: 2px solid #E5E7EB; border-radius: 28px; padding: 48px;">
+                    <div style="font-size: 16px; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 16px; opacity: 0.8;">Starter</div>
+                    <div style="margin-bottom: 12px;">
+                        <span style="font-size: 64px; font-weight: 900; line-height: 1; letter-spacing: -0.03em;">$19</span>
+                        <span style="font-size: 18px; opacity: 0.7;">/agent/mo</span>
+                    </div>
+                    <p style="font-size: 16px; opacity: 0.8; margin-bottom: 32px; line-height: 1.6;">Perfect for small teams getting started with unified messaging.</p>
+                    <div style="display: flex; flex-direction: column; gap: 16px; margin-bottom: 40px;">
+                        <div style="display: flex; align-items: center; gap: 12px; font-size: 15px;"><span style="font-weight: 900; font-size: 18px;">✓</span> Unlimited conversations</div>
+                        <div style="display: flex; align-items: center; gap: 12px; font-size: 15px;"><span style="font-weight: 900; font-size: 18px;">✓</span> WhatsApp & Web Chat</div>
+                        <div style="display: flex; align-items: center; gap: 12px; font-size: 15px;"><span style="font-weight: 900; font-size: 18px;">✓</span> Basic automation</div>
+                        <div style="display: flex; align-items: center; gap: 12px; font-size: 15px;"><span style="font-weight: 900; font-size: 18px;">✓</span> Email support</div>
+                    </div>
+                    <button style="width: 100%; padding: 18px; background: #7C3AED; color: white; border: none; border-radius: 14px; font-size: 17px; font-weight: 700; cursor: pointer;">Get Started</button>
                 </div>
-                <div class="value-card">
-                    <h3>📈 Scalable communication</h3>
-                    <p>Handle hundreds of daily chats without losing control. Grow without adding complexity.</p>
+
+                <div style="background: linear-gradient(135deg, #7C3AED 0%, #6D28D9 100%); border: 2px solid transparent; border-radius: 28px; padding: 48px; position: relative; color: white; transform: scale(1.05);">
+                    <div style="position: absolute; top: -16px; left: 50%; transform: translateX(-50%); background: #EC4899; color: white; padding: 8px 20px; border-radius: 100px; font-size: 13px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.5px;">Most Popular</div>
+                    <div style="font-size: 16px; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 16px; opacity: 0.8;">Professional</div>
+                    <div style="margin-bottom: 12px;">
+                        <span style="font-size: 64px; font-weight: 900; line-height: 1; letter-spacing: -0.03em;">$49</span>
+                        <span style="font-size: 18px; opacity: 0.7;">/agent/mo</span>
+                    </div>
+                    <p style="font-size: 16px; opacity: 0.8; margin-bottom: 32px; line-height: 1.6;">For growing teams that need advanced features and priority support.</p>
+                    <div style="display: flex; flex-direction: column; gap: 16px; margin-bottom: 40px;">
+                        <div style="display: flex; align-items: center; gap: 12px; font-size: 15px;"><span style="font-weight: 900; font-size: 18px;">✓</span> Everything in Starter</div>
+                        <div style="display: flex; align-items: center; gap: 12px; font-size: 15px;"><span style="font-weight: 900; font-size: 18px;">✓</span> All channels (Email, Instagram)</div>
+                        <div style="display: flex; align-items: center; gap: 12px; font-size: 15px;"><span style="font-weight: 900; font-size: 18px;">✓</span> Advanced automation</div>
+                        <div style="display: flex; align-items: center; gap: 12px; font-size: 15px;"><span style="font-weight: 900; font-size: 18px;">✓</span> Priority support</div>
+                    </div>
+                    <button style="width: 100%; padding: 18px; background: white; color: #7C3AED; border: none; border-radius: 14px; font-size: 17px; font-weight: 700; cursor: pointer;">Get Started</button>
                 </div>
-                <div class="value-card">
-                    <h3>💰 Simple pricing</h3>
-                    <p>Transparent, monthly subscription. No per-seat surprises. Know exactly what you're paying.</p>
-                </div>
-                <div class="value-card">
-                    <h3>🌐 Multi-channel ready</h3>
-                    <p>Start with WhatsApp, add more channels as you grow. Scale at your own pace.</p>
+
+                <div style="background: white; border: 2px solid #E5E7EB; border-radius: 28px; padding: 48px;">
+                    <div style="font-size: 16px; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 16px; opacity: 0.8;">Enterprise</div>
+                    <div style="margin-bottom: 12px;">
+                        <span style="font-size: 64px; font-weight: 900; line-height: 1; letter-spacing: -0.03em;">$99</span>
+                        <span style="font-size: 18px; opacity: 0.7;">/agent/mo</span>
+                    </div>
+                    <p style="font-size: 16px; opacity: 0.8; margin-bottom: 32px; line-height: 1.6;">For large teams with advanced security and customization needs.</p>
+                    <div style="display: flex; flex-direction: column; gap: 16px; margin-bottom: 40px;">
+                        <div style="display: flex; align-items: center; gap: 12px; font-size: 15px;"><span style="font-weight: 900; font-size: 18px;">✓</span> Everything in Professional</div>
+                        <div style="display: flex; align-items: center; gap: 12px; font-size: 15px;"><span style="font-weight: 900; font-size: 18px;">✓</span> Self-hosted option</div>
+                        <div style="display: flex; align-items: center; gap: 12px; font-size: 15px;"><span style="font-weight: 900; font-size: 18px;">✓</span> Custom integrations</div>
+                        <div style="display: flex; align-items: center; gap: 12px; font-size: 15px;"><span style="font-weight: 900; font-size: 18px;">✓</span> Dedicated support</div>
+                    </div>
+                    <button style="width: 100%; padding: 18px; background: #7C3AED; color: white; border: none; border-radius: 14px; font-size: 17px; font-weight: 700; cursor: pointer;">Contact Sales</button>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Channels -->
-    <section class="section-light">
+    <section style="background: #FAFAFF;">
         <div class="container">
-            <h2 class="section-title">Connect your favorite channels.</h2>
-            <p class="section-subtitle">Basereply works where your customers are.</p>
-            <div class="channels-grid">
-                <div class="channel-item">
-                    <div class="channel-icon">📱</div>
-                    <div class="channel-name">WhatsApp Business</div>
-                </div>
-                <div class="channel-item">
-                    <div class="channel-icon">💬</div>
-                    <div class="channel-name">Website Live Chat</div>
-                </div>
-                <div class="channel-item">
-                    <div class="channel-icon">📧</div>
-                    <div class="channel-name">Email</div>
-                </div>
-                <div class="channel-item">
-                    <div class="channel-icon">📷</div>
-                    <div class="channel-name">Instagram</div>
-                </div>
-                <div class="channel-item">
-                    <div class="channel-icon">✈️</div>
-                    <div class="channel-name">Telegram</div>
-                </div>
-                <div class="channel-item">
-                    <div class="channel-icon">🔌</div>
-                    <div class="channel-name">API</div>
-                </div>
+            <div class="section-header">
+                <div class="section-label">Testimonials</div>
+                <h2 class="section-title">Trusted by teams who talk to customers every day</h2>
             </div>
-        </div>
-    </section>
-
-    <!-- Testimonials -->
-    <section>
-        <div class="container">
-            <h2 class="section-title">Trusted by teams who talk to customers every day.</h2>
-            <div class="testimonial-grid">
-                <div class="testimonial-card">
-                    <p class="testimonial-quote">"Basereply made it effortless for our small team to manage hundreds of WhatsApp conversations. Game changer for our support workflow."</p>
-                    <div class="testimonial-author">
-                        <div class="testimonial-avatar">JR</div>
-                        <div class="testimonial-info">
-                            <h4>Julia R.</h4>
-                            <p>Customer Success Lead</p>
+            <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 32px; margin-top: 72px;">
+                <div style="background: white; padding: 36px; border-radius: 20px; border: 1px solid #E5E7EB;">
+                    <p style="font-size: 16px; color: #4B5563; line-height: 1.7; margin-bottom: 28px;">"Basereply made it effortless for our small team to manage hundreds of WhatsApp conversations. Game changer for our support workflow."</p>
+                    <div style="display: flex; align-items: center; gap: 14px;">
+                        <div style="width: 52px; height: 52px; background: linear-gradient(135deg, #7C3AED 0%, #EC4899 100%); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: white; font-weight: 700; font-size: 16px;">JR</div>
+                        <div>
+                            <div style="font-size: 15px; font-weight: 700;">Julia R.</div>
+                            <div style="font-size: 13px; color: #9CA3AF;">Customer Success Lead</div>
                         </div>
                     </div>
                 </div>
-                <div class="testimonial-card">
-                    <p class="testimonial-quote">"Setup took less than 10 minutes. Our team was replying to customers the same day. Absolutely incredible experience."</p>
-                    <div class="testimonial-author">
-                        <div class="testimonial-avatar">MS</div>
-                        <div class="testimonial-info">
-                            <h4>Mark S.</h4>
-                            <p>Operations Manager</p>
+                <div style="background: white; padding: 36px; border-radius: 20px; border: 1px solid #E5E7EB;">
+                    <p style="font-size: 16px; color: #4B5563; line-height: 1.7; margin-bottom: 28px;">"Setup took less than 10 minutes. Our team was replying to customers the same day. Absolutely incredible experience."</p>
+                    <div style="display: flex; align-items: center; gap: 14px;">
+                        <div style="width: 52px; height: 52px; background: linear-gradient(135deg, #7C3AED 0%, #EC4899 100%); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: white; font-weight: 700; font-size: 16px;">MS</div>
+                        <div>
+                            <div style="font-size: 15px; font-weight: 700;">Mark S.</div>
+                            <div style="font-size: 13px; color: #9CA3AF;">Operations Manager</div>
                         </div>
                     </div>
                 </div>
-                <div class="testimonial-card">
-                    <p class="testimonial-quote">"The automation rules save us hours every week. Best decision we made for scaling our customer support operations."</p>
-                    <div class="testimonial-author">
-                        <div class="testimonial-avatar">AL</div>
-                        <div class="testimonial-info">
-                            <h4>Anna L.</h4>
-                            <p>Support Team Lead</p>
+                <div style="background: white; padding: 36px; border-radius: 20px; border: 1px solid #E5E7EB;">
+                    <p style="font-size: 16px; color: #4B5563; line-height: 1.7; margin-bottom: 28px;">"The automation rules save us hours every week. Best decision we made for scaling our customer support operations."</p>
+                    <div style="display: flex; align-items: center; gap: 14px;">
+                        <div style="width: 52px; height: 52px; background: linear-gradient(135deg, #7C3AED 0%, #EC4899 100%); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: white; font-weight: 700; font-size: 16px;">AL</div>
+                        <div>
+                            <div style="font-size: 15px; font-weight: 700;">Anna L.</div>
+                            <div style="font-size: 13px; color: #9CA3AF;">Support Team Lead</div>
                         </div>
                     </div>
                 </div>
@@ -1586,59 +949,50 @@
         </div>
     </section>
 
-    <!-- Final CTA -->
-    <section id="cta" class="final-cta">
+    <section id="cta" class="cta-section">
         <div class="container">
-            <div class="final-cta-content">
-                <h2>Start managing your WhatsApp conversations today.</h2>
-                <p>Your customers are messaging you. Be ready to reply instantly.</p>
-                <div class="hero-cta-buttons" style="justify-content: center;">
-                    <a href="#signup" class="btn btn-primary">Get started</a>
-                    <a href="https://calendly.com/mariano-martene" target="_blank" class="btn btn-secondary">Book a demo</a>
+            <div class="cta-content">
+                <h2>Ready to transform your customer conversations?</h2>
+                <p>Join thousands of teams who reply faster and delight customers with Basereply.</p>
+                <div class="cta-group" style="justify-content: center;">
+                    <a href="#signup" class="btn btn-primary" style="background: white; color: var(--primary);">Start free trial →</a>
+                    <a href="https://calendly.com/mariano-martene" target="_blank" class="btn btn-secondary" style="border-color: white; color: white;">Book a demo</a>
                 </div>
-                <p class="final-microcopy">Free setup assistance included.</p>
             </div>
         </div>
     </section>
 
-    <!-- Footer -->
     <footer>
         <div class="container">
-            <div class="footer-content">
+            <div class="footer-grid">
                 <div class="footer-brand">
-                    <div class="logo">Basereply</div>
-                    <p class="footer-description">The simple, powerful messaging platform that helps teams manage customer conversations from one unified inbox.</p>
+                    <h3>Basereply</h3>
+                    <p class="footer-description">The modern messaging platform that helps teams manage customer conversations from one unified inbox.</p>
                     <div class="meta-badge">
-                        <div class="meta-icon">✓</div>
-                        <span>Meta Tech Provider</span>
+                        <span>✓ Meta Tech Provider</span>
                     </div>
                 </div>
                 <div class="footer-column">
                     <h4>Product</h4>
                     <a href="#features">Features</a>
                     <a href="#pricing">Pricing</a>
-                    <a href="#channels">Channels</a>
                     <a href="#integrations">Integrations</a>
                 </div>
                 <div class="footer-column">
                     <h4>Resources</h4>
                     <a href="#docs">Documentation</a>
-                    <a href="#blog">Blog</a>
-                    <a href="#support">Support</a>
                     <a href="#api">API</a>
+                    <a href="#support">Support</a>
                 </div>
                 <div class="footer-column">
                     <h4>Company</h4>
-                    <a href="#about">About Us</a>
-                    <a href="#contact">Contact</a>
-                    <a href="https://calendly.com/mariano-martene" target="_blank">Book a Demo</a>
-                    <a href="#careers">Careers</a>
+                    <a href="#about">About</a>
+                    <a href="https://calendly.com/mariano-martene" target="_blank">Contact</a>
                 </div>
                 <div class="footer-column">
                     <h4>Legal</h4>
-                    <a href="#privacy">Privacy Policy</a>
-                    <a href="#terms">Terms of Service</a>
-                    <a href="#security">Security</a>
+                    <a href="#privacy">Privacy</a>
+                    <a href="#terms">Terms</a>
                 </div>
             </div>
             <div class="footer-bottom">
