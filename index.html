@@ -76,35 +76,8 @@
         .logo-icon {
             width: 42px;
             height: 42px;
-            background: linear-gradient(135deg, #7C3AED 0%, #EC4899 100%);
             border-radius: 11px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            position: relative;
-            box-shadow: 0 4px 14px rgba(124, 58, 237, 0.4);
-        }
-
-        .logo-icon::before {
-            content: '';
-            position: absolute;
-            width: 18px;
-            height: 18px;
-            background: white;
-            border-radius: 50%;
-            top: 8px;
-            left: 8px;
-        }
-
-        .logo-icon::after {
-            content: '';
-            position: absolute;
-            width: 12px;
-            height: 12px;
-            background: white;
-            border-radius: 50%;
-            bottom: 8px;
-            right: 8px;
+            flex-shrink: 0;
         }
 
         .logo-text {
@@ -576,6 +549,15 @@
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             margin-bottom: 16px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .footer-logo-icon {
+            width: 36px;
+            height: 36px;
+            border-radius: 8px;
         }
 
         .footer-description {
@@ -634,7 +616,7 @@
         <div class="container">
             <div class="nav-inner">
                 <a href="#" class="logo">
-                    <div class="logo-icon"></div>
+                    <img src="/favicon-32x32.png" alt="Basereply" class="logo-icon">
                     <span class="logo-text">Basereply</span>
                 </a>
                 <a href="https://calendly.com/mariano-martene" target="_blank" class="nav-cta">Book a demo</a>
@@ -966,7 +948,10 @@
         <div class="container">
             <div class="footer-grid">
                 <div class="footer-brand">
-                    <h3>Basereply</h3>
+                    <h3>
+                        <img src="/favicon-32x32.png" alt="Basereply" class="footer-logo-icon">
+                        Basereply
+                    </h3>
                     <p class="footer-description">The modern messaging platform that helps teams manage customer conversations from one unified inbox.</p>
                     <div class="meta-badge">
                         <span>✓ Meta Tech Provider</span>
@@ -991,8 +976,9 @@
                 </div>
                 <div class="footer-column">
                     <h4>Legal</h4>
-                    <a href="#privacy">Privacy</a>
-                    <a href="#terms">Terms</a>
+                    <a href="https://basereply.com/privacy_policy.html">Privacy</a>
+                    <a href="https://basereply.com/terms_of_service.html">Terms</a>
+                    <a href="https://basereply.com/data_deletion.html">Data Deletion</a>
                 </div>
             </div>
             <div class="footer-bottom">
